@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
     const app = express();
-    const PORT = 3001;
+    // const PORT = 3001;
 
     // برای استفاده از __dirname در ES Module
     const __filename = fileURLToPath(import.meta.url);
@@ -101,9 +101,15 @@ import fs from "fs";
         res.json({ ads });
     });
 
+    const PORT = process.env.PORT || 3001;
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
+
+
+    // app.listen(PORT, () => {
+        // console.log(`Server is running on port ${PORT}`);
+    // });
 
 
 

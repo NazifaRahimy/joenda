@@ -1,5 +1,5 @@
 {
-  "name": "ganjyab",
+  "name": "joyenda",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node src/server.js"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
