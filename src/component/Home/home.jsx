@@ -42,7 +42,8 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
     } = useContext(FilterContext);
 
 	useEffect(() => {
-        fetch("http://localhost:3001/ads")
+        // fetch("http://localhost:3001/ads")
+        fetch("https://joyenda-server.onrender.com/ads")
         .then(res => {
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
@@ -188,7 +189,8 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
                                 </button>
                                 <div className="flex md:flex-col flex-row-reverse">
                                     <Link to={`/post/${product.id}`}>
-                                        <img  src={`http://localhost:3001${product.images[0].url}`} className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md bg-blue-400 ${document.documentElement.dir === "rtl" ? "rounded-tl-md rounded-bl-md" : "rounded-tr-md rounded-br-md"}`} alt={product.cat} />
+                                        {/* src={`http://localhost:3001${product.images[0].url}`} */}
+                                        <img   src={`https://joyenda-server.onrender.com${product.images[0].url}`}  className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md bg-blue-400 ${document.documentElement.dir === "rtl" ? "rounded-tl-md rounded-bl-md" : "rounded-tr-md rounded-br-md"}`} alt={product.cat} />
                                     </Link>
                                     <div className="w-full">
                                        <div className="info flex-1 p-4">

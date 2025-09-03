@@ -109,7 +109,8 @@ function CreateAd() {
             adData.images.forEach((imageObj) => {
                 formData.append("images", imageObj.file);
             });
-            const response = await fetch("http://localhost:3001/ads", {
+            // const response = await fetch("http://localhost:3001/ads", {
+            const response = await fetch("https://joyenda-server.onrender.com/ads", {
                 method: "POST",
                 body: formData,
             });
