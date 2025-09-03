@@ -148,7 +148,7 @@ import { useNavigate } from "react-router-dom";
                 </form> 
                 <div className="px-7">
                     <div className=" flex items-center px-4 ">
-			            <span className="px-4 text-[20px] tracking-wide">Don'n have an account ?		</span> 
+			            <span className="px-4 text-[18px] tracking-wide">Don'n have an account ?		</span> 
                         <Link to="/login"  className=" text-cyan-600 text-2xl"> Login	</Link> 
 		 	        </div>
                     <div className="flex items-center gap-2 my-5">

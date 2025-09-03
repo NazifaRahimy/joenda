@@ -114,7 +114,7 @@ export default function Login( { openRegistration, setOpenRegistration}) {
     return (
         <div className="fixed top-0 left-0 bg-white w-full h-screen flex md:pt-0 md:items-center justify-center z-[1000]">
 		   <div className="bg-gray-100 dark:bg-[#101010] dark:border dark:border-[#282828]   px-8 py-5  w-full shadow-lg relative">
-			    <div className="w-full h-auto mt-8 gap-5  flex flex-col items-center justify-center mb-5">
+			    <div className="w-full h-auto mt-5 gap-5  flex flex-col items-center justify-center mb-5">
                     <div className="w-[120px] h-[120px] rounded-full  border-4 border-white dark:border-[#101010] ring-4 ring-cyan-600 bg-cyan-600 text-white text-3xl flex items-center justify-center"> جوینده</div>
                     <p className="  mt-2 text-xl text-cyan-600 tracking-wide">AFghanistan Online Market </p>
                 </div>
@@ -133,7 +133,7 @@ export default function Login( { openRegistration, setOpenRegistration}) {
 				    <button type="submit"   className="bg-cyan-600 hover:bg-cyan-400 text-white px-4 py-3 rounded-full w-full flex items-center justify-center gap-1 text-xl tracking-wide	">{t("loginModal.login")} </button>
                 </form> 
 				<div className=" flex items-center px-4 my-5">
-			        <span className="px-4 text-[20px] tracking-wide">Don'n have an account ?		</span> 
+			        <span className="px-4 text-[16px] tracking-wide">Don'n have an account ?		</span> 
                     <Link to="/registration" className="ress text-cyan-600  tracking-wide"> Registration	</Link> 
 		 	    </div>
 				{openRegistration && (<Registration />)}
