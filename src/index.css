@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.scroll-dark::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-dark::-webkit-scrollbar-track {
+  background: #ffffff; /* حالت روشن */
+}
+
+.scroll-dark::-webkit-scrollbar-thumb {
+  background-color: #1a1a1a; /* اسکرول مشکی در روشن */
+  border-radius: 10px;
+}
+
+/* حالت دارک با کلاس dark از Tailwind */
+.dark .scroll-dark::-webkit-scrollbar-track {
+  background: #1a1a1a; /* زمینه تیره */
+}
+
+.dark .scroll-dark::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* اسکرول سفید در دارک */
+}
