@@ -168,7 +168,7 @@ const Post = ({ addToFavorites }) => {
                 <div className="w-full md:w-[65%] h-auto">
                     <div className="w-full h-auto bg-gray-100">
                         <div className="w-[65%] h-[460px] mx-auto">
-                            <img className="w-full h-full" src={`http://localhost:3001${product.images[0].url || product.images[0]}`} />
+                            <img className="w-full h-full" src={`https://joyenda-server.onrender.com${product.images[0].url || product.images[0]}`} />
                         </div>
                     </div>
                     <div className="flex justify-between mt-5">
