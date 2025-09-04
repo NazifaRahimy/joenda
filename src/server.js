@@ -31,12 +31,24 @@ import fs from "fs";
 
     // app.use(cors());
 
-    app.use(
-        cors({
-            origin: "https://joenda.netlify.app",
-            methods: ["GET", "POST", "PUT", "DELETE"],
-        })
-    );
+    // app.use(
+    //     cors({
+    //         origin: "https://joenda.netlify.app",
+    //         methods: ["GET", "POST", "PUT", "DELETE"],
+    //     })
+    // );
+    app.use(cors({ origin: "*" }));
+
+//     app.use(
+//   cors({
+//     origin: [
+//       "https://joenda.netlify.app",
+//       "https://joyenda-server.onrender.com"
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"]
+//   })
+// );
+
 
     app.use(express.json());
 
