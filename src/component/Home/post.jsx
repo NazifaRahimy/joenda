@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import postProduct from "./postProduct";
 import { GoArrowRight, GoArrowLeft } from "react-icons/go"
-
+import BASE_URL from "../../config";
 const Post = ({ addToFavorites }) => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -123,7 +123,8 @@ const Post = ({ addToFavorites }) => {
   };
 
     useEffect(() => {
-        fetch(`https://joyenda-server.onrender.com/ads/${id}`)
+        
+        fetch(`${BASE_URL}/ads/${id}`)
           .then(res => res.json())
           .then(data => setProduct(data))
           .catch(err => console.log(err));
@@ -168,14 +169,7 @@ const Post = ({ addToFavorites }) => {
                 <div className="w-full md:w-[65%] h-auto">
                     <div className="w-full h-auto bg-gray-100">
                         <div className="w-[65%] h-[460px] mx-auto">
-                            <img className="w-full h-full" 
-                              src={product.images?.[0]?.url 
-         ? `https://joyenda-server.onrender.com${product.images[0].url}` 
-         : product.images?.[0] 
-            ? `https://joyenda-server.onrender.com${product.images[0]}` 
-            : "/fallback.jpg"} 
-                            // src={`https://joyenda-server.onrender.com${product.images[0].url }`} 
-                             />
+                            <img className="w-full h-full" src={`${BASE_URL}${product.images[0].url }`} />
                         </div>
                     </div>
                     <div className="flex justify-between mt-5">
