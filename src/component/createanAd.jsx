@@ -186,7 +186,7 @@ function CreateAd() {
                             <div className="description flex flex-col w-full ">
                                 <label  className="my-2">  {t("create.adDescription")} </label>
                                 <div className="w-full h-atuo border border-cyan-200 px-2 dark:bg-[#121212]">
-                                    <div className="icon flex gap-2  pt-2 ">
+                                    <div className="icon flex gap-2 flex-wrap   pt-2 ">
                                         <button className="hover:bg-cyan-200 hover:text-cyan-700  py-2  px-3 rounded-md "><FaBold /></button>
                                         <button className="hover:bg-cyan-200 hover:text-cyan-700  py-1  px-3 rounded-md "> <FaItalic /> </button>
                                         <button className="hover:bg-cyan-200 hover:text-cyan-700  py-1  px-3 rounded-md ">  <LuListPlus /></button>
@@ -226,17 +226,17 @@ function CreateAd() {
                                 </div>
                             </div>
                             <div className=" flex mt-3 gap-2 w-full">
-                                <div className="price flex flex-col w-full">
+                                <div className="price flex flex-col w-[100%]">
                                     <label> {t("create.priceLabel")}<span className="text-red-300">*</span></label>
-                                    <input type="text" placeholder="0.00"  className="focus:ring-1 focus:ring-cyan-500 dark:bg-[#282828] mt-2 shadow rounded px-3 py-1 outline-none"
+                                    <input type="text" placeholder="0.00"  className="w-full focus:ring-1 focus:ring-cyan-500 dark:bg-[#282828] mt-2 shadow rounded px-3 py-1 outline-none"
 									    onChange={handleChange}
                                         value={adData.price}
                                         name="price"
                                     />
                                 </div>
-                                <div  ref={dropdownRef}  className="currency flex flex-col w-full">
+                                <div  ref={dropdownRef}  className="currency flex flex-col w-[100%]">
                                     <label>{t("create.currencyLabel")}</label>
-                                    <button onClick={(e) => { e.preventDefault(); setOpen(!open);  }} className="dark:bg-[#282828] button my-2 px-5 py-1 shadow rounded flex justify-between items-center" >
+                                    <button onClick={(e) => { e.preventDefault(); setOpen(!open);  }} className="w-full dark:bg-[#282828] button my-2 px-5 py-1 shadow rounded flex justify-between items-center" >
                                         <p> {t(`create.${adData.currency}`)}</p> 
 										<span className="text-gray-400"> <RiExpandUpDownLine /> </span>
                                     </button>
@@ -323,7 +323,7 @@ function CreateAd() {
                                     </div>
                                     {selectedProvince && (
                                        <div className=" flex flex-col w-1/3">
-                                            <label className="my-3">  {t("district.title")}  </label>
+                                            <label className="my-3 text-[12px] md:text-[16px]">  {t("district.title")}  </label>
                                             <Districk  value={adData.district}
                                             selectedProvince={selectedProvince}
                                             onChange={(district) =>
@@ -333,7 +333,7 @@ function CreateAd() {
                                        </div>
                                     )}
                                     <div className="flex flex-col w-1/3 ">
-                                        <label  className="my-3"> {t("create.regionLabel")} </label>
+                                        <label  className="my-3 "> {t("create.regionLabel")} </label>
                                         <input  className="shadow py-1 px-3 rounded outline-none focus:ring-1 focus:ring-cyan-300 w-auto dark:bg-[#282828] "
                                          type="text"
                                          value={adData.region}

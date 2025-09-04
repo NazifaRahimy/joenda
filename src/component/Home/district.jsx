@@ -54,7 +54,7 @@ const Districk = ({ selectedProvince , value, onChange }) => {
     return ( 
         <div className="button relative w-[80%] md:w-[50%] lg:w-auto flex   dark:bg-[#282828]  ">
             <button onClick={(e) =>{e.preventDefault(); setOpen(!open)}}
-            className=" w-full md:w-[200px] rounded-md   dark:bg-[#1a1a1a]  border border-cyan-200  dark:text-white dark:hover:bg-cyan-900  transition-colors duration-200  hover:text-cyan-700 dark:border-cyan-300 h-9 flex items-center justify-between px-4  hover:bg-cyan-100 ">
+            className=" w-full md:w-[200px] rounded-md text-[12px] md:text-[16px]  dark:bg-[#1a1a1a]  border border-cyan-200  dark:text-white dark:hover:bg-cyan-900  transition-colors duration-200  hover:text-cyan-700 dark:border-cyan-300 h-9 flex items-center justify-between px-4  hover:bg-cyan-100 ">
                 <span><span>{selected || t("district.chooseDistrict")}</span></span>
                 <MdOutlineExpandMore className="text-xl" />
             </button>

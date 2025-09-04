@@ -47,7 +47,7 @@ return (
             <div className="hidden md:inline">   <ThemeSelector  /></div>
             <div className="hidden md:inline">  <AuthForm  setIsLoggedIn={setIsLoggedIn}/></div>
         </div>
-        <NavLink to="/myprofile " className={({ isActive }) =>  `font-semibold py-2 md:hidden dark:text-white rounded flex flex-col justify-center items-center ${isActive ? "text-cyan-600" : "text-[#232323] hover:text-cyan-600"}` }>  
+        <NavLink to="/myprofile " className={({ isActive }) =>  `font-semibold py-2 md:hidden dark:text-white rounded flex flex-col justify-center text-[16px] items-center ${isActive ? "text-cyan-600" : "text-[#232323] hover:text-cyan-600"}` }>  
             <span >< CgProfile    size={24} /></span> My profile
         </NavLink>
     </div>

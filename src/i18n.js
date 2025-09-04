@@ -322,8 +322,8 @@ const resources = {
             categoryImageRealEstate: "Real State",
             priceLabel: "Price",
             currencyLabel: "Currency",
-            currencyAFN: "ANF (Afghani)",
-            currencyUSD: "USD (United State DOllars)",
+            currencyAFN: "Afghani",
+            currencyUSD: "Dollar",
             moreDetailsLabel: "More details",
             phoneNumberLabel: "Phone number*",
             phoneNumberInvalid: "Phone number must be valid Afghanistan phone number.",
@@ -997,7 +997,7 @@ const resources = {
             privacy: "حریم خصوصی",
         },
         navbar: {
-            home: "صحفه اصلی",
+            home: "خانه",
             favorites: "علاقه‌مندی‌ها",
             more: "بیشتر",
             createAd: "ثبت آگهی",
@@ -1305,8 +1305,8 @@ const resources = {
             categoryImageRealEstate: "جایداد ها",
             priceLabel: "قیمت",    
             currencyLabel: "واحد پول",
-            currencyAFN: "افغانی (AFN)",
-            currencyUSD: "دالر آمریکا (USD)",
+            currencyAFN: "افغانی",
+            currencyUSD: "دالر",
             moreDetailsLabel: "معلومات بیشتر",
             phoneNumberLabel: "شماره تماس*",
             whatsappNumberLabel: "شماره واتساپ",
@@ -1321,7 +1321,7 @@ const resources = {
         },
         district: {
             title: "ناحیه / ولسوالی",
-            chooseDistrict: "انتخاب ناحیه/ ولسوالی",
+            chooseDistrict: "ناحیه/ ولسوالی",
             Kabul: {
                 cityDistricts: {
                     "District 1": "ناحیه ۱",
@@ -2293,8 +2293,8 @@ const resources = {
             categoryImageRealEstate: "جایدادونه",
 			priceLabel: "بیه",
             currencyLabel: "پیسې",
-            currencyAFN: "افغانی (AFN)",
-            currencyUSD: "دالر آمریکا (USD)",
+            currencyAFN: "افغانی",
+            currencyUSD: "دالر",
 			moreDetailsLabel: "نور جزییات",
 			phoneNumberLabel: "د تلیفون شمېره*",
             whatsappNumberLabel: "د واټساپ شمېره",
@@ -2307,7 +2307,7 @@ const resources = {
         },
         district: {
             title: "ناحيه / ولسوالۍ",
-            chooseDistrict: "سیمه (ولسوالی) غوره کړئ",
+            chooseDistrict: "سیمه (ولسوالی)",
             Kabul: {
                 cityDistricts: {
                     "District 1": "لومړۍ ناحیه",
