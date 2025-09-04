@@ -13,19 +13,34 @@ import fs from "fs";
     const __dirname = path.dirname(__filename);
 
     // تنظیمات ذخیره‌سازی multer:
-    const storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-            const uploadPath = path.join(__dirname, 'uploads');
-            if (!fs.existsSync(uploadPath)) {
-                fs.mkdirSync(uploadPath);
-            }
-            cb(null, uploadPath);
-        },
-        filename: (req, file, cb) => {
-            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-            cb(null, uniqueSuffix + '-' + file.originalname);
+//     const storage = multer.diskStorage({
+//         destination: (req, file, cb) => {
+//             const uploadPath = path.join(__dirname, 'uploads');
+//             if (!fs.existsSync(uploadPath)) {
+//                 fs.mkdirSync(uploadPath);
+//             }
+//             cb(null, uploadPath);
+//         },
+//         filename: (req, file, cb) => {
+//             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//             cb(null, uniqueSuffix + '-' + file.originalname);
+//         }
+//    });
+   const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        // مسیر موقت روی Render
+        const uploadPath = path.join("/tmp", "uploads");
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
         }
-   });
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + '-' + file.originalname);
+    }
+});
+
 
    const upload = multer({ storage });
 
