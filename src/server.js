@@ -19,7 +19,7 @@ import fs from "fs";
             if (!fs.existsSync(uploadPath)) {
                 fs.mkdirSync(uploadPath);
             }
-            b(null, uploadPath);
+            cb(null, uploadPath);
         },
         filename: (req, file, cb) => {
             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
