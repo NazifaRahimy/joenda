@@ -123,14 +123,9 @@ const Post = ({ addToFavorites }) => {
   };
 
     useEffect(() => {
-        // fetch(`http://localhost:3001/ads/${id}`)
         fetch(`https://joyenda-server.onrender.com/ads/${id}`)
           .then(res => res.json())
-        //   .then(data => setProduct(data))
-             .then(data => {
-          console.log(data); // اضافه کن برای بررسی ساختار
-          setProduct(data);
-      })
+          .then(data => setProduct(data))
           .catch(err => console.log(err));
     }, [id]);
 
