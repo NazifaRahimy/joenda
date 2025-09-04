@@ -29,7 +29,15 @@ import fs from "fs";
 
    const upload = multer({ storage });
 
-    app.use(cors());
+    // app.use(cors());
+
+    app.use(
+        cors({
+            origin: "https://joenda.netlify.app",
+            methods: ["GET", "POST", "PUT", "DELETE"],
+        })
+    );
+
     app.use(express.json());
 
     app.post('/login', (req, res) => {
