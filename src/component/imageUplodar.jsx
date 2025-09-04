@@ -49,7 +49,7 @@ function ImageUploader({ images, onChange }) {
                 <span className="text-gray-400 text-xs">JPEG, JPG, PNG (Max: 20MB)</span>
             </button>
         </div>
-        <input type="file" accept=".jpg,.jpeg,.png" multiple ref={fileInputRef}  onChange={handleFileChange} className="hidden"/>
+        <input type="file" name="images"  accept=".jpg,.jpeg,.png" multiple ref={fileInputRef}  onChange={handleFileChange} className="hidden"/>
     </div>
   );
 }
