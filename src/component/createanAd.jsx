@@ -225,7 +225,7 @@ function CreateAd() {
                                 ))}
                                 </div>
                             </div>
-                            <div className=" flex mt-3 gap-2 w-full">
+                            <div className=" flex flex-col md:flex-row mt-3 gap-2 w-full">
                                 <div className="price flex flex-col w-[100%]">
                                     <label> {t("create.priceLabel")}<span className="text-red-300">*</span></label>
                                     <input type="text" placeholder="0.00"  className="w-full focus:ring-1 focus:ring-cyan-500 dark:bg-[#282828] mt-2 shadow rounded px-3 py-1 outline-none"
@@ -265,9 +265,9 @@ function CreateAd() {
                                     <p className="text-center text-gray-500 whitespace-nowrap">{t("create.moreDetailsLabel")}</p>
                                     <div className="flex-1 border-t "></div>
                                 </div>
-                                <div className="flex gap-2">
+                                <div className="flex gap-2 flex-col md:flex-row">
                                     <div className=" flex flex-col w-full relative gap-1">
-                                        <label>{t("create.phoneNumberLabel")}</label>
+                                        <label className="text-[12px] md:text-[16px]">{t("create.phoneNumberLabel")}</label>
                                         <div className="relative">
                                             <span  className={`absolute top-2.5  ${ document.documentElement.dir === "rtl"  ? "right-2" : "right-2"  } `}>
                                                 <GrLanguage />
@@ -283,7 +283,7 @@ function CreateAd() {
                                         </div>
                                     </div>
                                     <div className=" flex flex-col w-full relative gap-1">
-                                        <label className="flex justify-between">
+                                        <label className="flex justify-between mt-2 md:mt-0 text-[12px] md:text-[16px] ">
                                             {t("create.whatsappNumberLabel")}
                                             {adData.phoneNumber.length > 0 && (
                                                 <span className="text-[12px] text-red-400 hover:underline flex gap-1  items-center">
@@ -307,8 +307,8 @@ function CreateAd() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex w-full border-b pb-2 border-cyan-200 gap-1  ">
-                                    <div className="province mt-3 flex flex-col w-1/3   ">
+                                <div className="flex w-full border-b pb-3 border-cyan-200 gap-1 flex-col md:flex-row ">
+                                    <div className="province mt-3 flex flex-col w-full  md:w-1/3   ">
                                         <label className="mb-3"> {t("create.provinceLabel")} <span className="text-red-500 ">*</span></label>
                                         <ProvinceDropdown
                                             value={adData.province}
@@ -322,7 +322,7 @@ function CreateAd() {
                                         />
                                     </div>
                                     {selectedProvince && (
-                                       <div className=" flex flex-col w-1/3">
+                                       <div className=" flex flex-col w-full md:w-1/3 ">
                                             <label className="my-3 text-[12px] md:text-[16px]">  {t("district.title")}  </label>
                                             <Districk  value={adData.district}
                                             selectedProvince={selectedProvince}
@@ -332,7 +332,7 @@ function CreateAd() {
                                             />
                                        </div>
                                     )}
-                                    <div className="flex flex-col w-1/3 ">
+                                    <div className="flex flex-col w-full md:w-1/3 ">
                                         <label  className="my-3 "> {t("create.regionLabel")} </label>
                                         <input  className="shadow py-1 px-3 rounded outline-none focus:ring-1 focus:ring-cyan-300 w-auto dark:bg-[#282828] "
                                          type="text"
@@ -345,7 +345,7 @@ function CreateAd() {
                                 </div>
                             </div>
                             <div className="my-6 flex justify-end  w-full ">
-                                <button type="submit" className="px-3 py-1 flex items-center gap-2 rounded-md outline-none border-none bg-cyan-600 text-white w-[150px]">
+                                <button type="submit" className="px-3 py-2 w-full flex justify-center items-center gap-2 rounded-md outline-none border-none bg-cyan-600 text-white md:w-[150px]">
                                     <span> <IoIosAdd size={20} /> </span>
                                     <span>{t("create.submitButton")}</span>
                                 </button>

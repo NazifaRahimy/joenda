@@ -53,8 +53,8 @@ const Filters = ({setFilter})=> {
     };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-        <div className="bg-white dark:bg-[#191919] dark:border dark:border-[#282828] px-6 py-5 rounded-xl w-full max-w-md shadow-lg relative">
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-8 z-50">
+        <div className="bg-white dark:bg-[#191919] dark:border dark:border-[#282828] px-8 py-5 rounded-xl w-full max-w-md shadow-lg relative">
             <div className="relative border-b border-b-gray-300 pb-5">
                 <p className="text-[22px] font-semibold text-center w-full">Filters</p>
             </div>
@@ -111,14 +111,14 @@ const Filters = ({setFilter})=> {
                     <input type="text" placeholder="99,000" value={localFilters.maxPrice} onChange={(e) => setLocalFilters((prev) => ({ ...prev, maxPrice: e.target.value })) }
                     className="rounded-md border dark:bg-[#191919] border-gray-400 mt-1 text-left px-3 h-12 outline-none flex items-center"/>
                 </div>
-                <div className="w-full flex items-center justify-center mt-4 gap-6">
+                <div className="w-full flex items-center justify-between mt-4 ">
                     <button type="button" onClick={handleReset} className="px-8 py-3 bg-cyan-600 text-white outline-none border-none rounded-md text-xl"> Reset</button>
                     <button type="button" onClick={handleApply} className="px-8 py-3 bg-cyan-600 text-white outline-none border-none rounded-md text-xl">  Apply</button>
                 </div>
             </form>
             {sort && ( <Sort setSort={setSort} selectSort={localFilters.sort}  setSelecSort={(val) => setLocalFilters((prev) => ({ ...prev, sort: val }))  } />  )}
             {area && (
-                <SelecProvince area={area}
+                <SelecProvince area={area} showClass="flex"
                 onClose={()=>setArea(!area)}
                 selectedProvince={localFilters.province}
                 setSelectedProvince={(val) =>
