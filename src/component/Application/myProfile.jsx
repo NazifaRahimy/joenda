@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {FiUser, FiLogIn, FiLogOut} from "react-icons/fi";
 import {GrLanguage} from "react-icons/gr";
-import {  MdOutlineNightlight,  MdKeyboardArrowRight,  MdAppRegistration,  MdContactPage,} from "react-icons/md";
+import {  MdOutlineNightlight,  MdKeyboardArrowRight,  MdAppRegistration,  MdContactPage, MdKeyboardArrowLeft,} from "react-icons/md";
 import { BiBox } from "react-icons/bi";
 import ChangeLanguage from "./changeLanguage";
 import {FaRegUser, FaRegBookmark} from "react-icons/fa6";
@@ -12,7 +12,7 @@ import ContactPage from "./contact";
 import UpdateProfile from "./updateProfile";
 import Logout from "./logout";
 import DeleteAccount from "./deleteAccount";
-
+import { useTranslation } from "react-i18next";
 const MyProfile = () => {
     const [theme, setTheme] = useState("day");
     const [user, setUser] = useState(null);
@@ -22,6 +22,8 @@ const MyProfile = () => {
     const [openUpdateProfile, setOpenUpdateProfile] = useState(false);
     const [openLogout, setOpenLogout] = useState(false);
     const [openDeleteAccount, setOpenDeleteAccount] = useState(false);
+    const { i18n } = useTranslation();
+    const isRTL = i18n.dir() === "rtl";
     const handleLanguageSelect = (langLabel, langCode) => {
         setCurrentLanguage(langLabel);
         localStorage.setItem("selectedLang", langLabel); 
@@ -78,17 +80,17 @@ const MyProfile = () => {
                     </button>
                     <div onClick={() => setOpenLanguage(!openLanguage)} className=" px-3 py-2  flex justify-between items-center gap-2">
                         <span className="mt-1 flex gap-3 text-[#282828] dark:text-white text-[16px] tracking-wide"><GrLanguage size={22} /> Change Language </span>
-                        <span className="button text-[#282828] dark:text-white text-[13px] flex gap-2"> {currentLanguage} <MdKeyboardArrowRight size={25} className="text-cyan-600" /> </span>
+                        <span className="button text-[#282828]  dark:text-white text-[13px] flex gap-2"> {currentLanguage}  {isRTL ? <MdKeyboardArrowLeft size={25}  className="text-cyan-600" /> : <MdKeyboardArrowRight size={25}   className="text-cyan-600"/>} </span>
                     </div>
                     {user && (
                     <div>
                         <Link  to="/savedProduct" className="login  px-3 py-2 border-t border-gray-400 flex justify-between items-center gap-2" >
                             <span className=" flex items-center gap-3 text-[#282828] dark:text-white text-[16px] tracking-wide "><FaRegBookmark size={20} /> Saved Products </span>
-                            <span className="text-cyan-600"> <MdKeyboardArrowRight size={23} /></span>
+                            <span className="text-cyan-600">  {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                          </Link>
                         <Link to="/myProducts"  className="register px-3 py-2 border-t border-gray-400 flex justify-between items-center gap-2">
                             <span className=" flex gap-3 text-[#282828] dark:text-white items-center  tracking-wide text-[16px]">  < BiBox size={25} /> My Products </span>
-                            <span className="text-cyan-600"> <MdKeyboardArrowRight size={25} />  </span>
+                            <span className="text-cyan-600">  {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}  </span>
                         </Link>
                     </div>
                     )}
@@ -98,26 +100,26 @@ const MyProfile = () => {
                     <div className="w-full px-3 py-1 flex flex-col bg-white dark:bg-[#232323] rounded shadow mt-3">
                         <button onClick={() => setOpenUpdateProfile(true)} className="login  px-3 py-2 border-gray-400 flex justify-between items-center gap-2">
                             <span className=" flex items-center gap-3 text-[#282828] dark:text-white text-[16px] tracking-wide "> <FaRegUser size={22} /> Update Profile</span>
-                            <span className="text-cyan-600"><MdKeyboardArrowRight size={25} /> </span>
+                            <span className="text-cyan-600"> {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />} </span>
                         </button>
                         <button onClick={() => setOpenDeleteAccount(true)} className="register px-3 py-2 border-b border-gray-400 flex justify-between items-center gap-2" >
                             <span className=" flex gap-3 text-[#282828] dark:text-white items-center  tracking-wide text-[16px]"> <MdOutlineDelete size={27} /> Delet Account</span>
-                            <span className="text-cyan-600"><MdKeyboardArrowRight size={25} /> </span>
+                            <span className="text-cyan-600"> {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                         </button>
                         <button onClick={() => setOpenLogout(true)} className="login  px-3 py-2 border-gray-400 flex justify-between items-center gap-2">
                             <span className=" flex items-center gap-3 text-[#282828] dark:text-white text-[16px] tracking-wide "><FiLogOut size={23} />  Logout</span>
-                            <span className="text-cyan-600"><MdKeyboardArrowRight size={25} /></span>
+                            <span className="text-cyan-600"> {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                         </button>
                     </div>
                 ) : (
                     <div className="w-full px-3 py-1 flex flex-col bg-white dark:bg-[#232323] rounded shadow mt-3">
                         <Link to="/login" className="login border-b px-3 py-2 border-gray-400 flex justify-between items-center gap-2">
                             <span className=" flex items-center gap-3 text-[#282828] dark:text-white text-[16px] tracking-wide "> <FiLogIn size={23} /> Login</span>
-                            <span className="text-cyan-600"><MdKeyboardArrowRight size={25} /></span>
+                            <span className="text-cyan-600">      {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />} </span>
                         </Link>
                         <Link to="/registration" className="register px-3 py-2 border-gray-400 flex justify-between items-center gap-2" >
                             <span className=" flex gap-3 text-[#282828] dark:text-white items-center  tracking-wide text-[16px]"> <MdAppRegistration size={25} /> Registration</span>
-                            <span className="text-cyan-600"> <MdKeyboardArrowRight size={25} /></span>
+                            <span className="text-cyan-600">  {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                        </Link>
                     </div>
                 )}
@@ -127,15 +129,15 @@ const MyProfile = () => {
                 <div className="w-full px-3 py-2  flex flex-col bg-white dark:bg-[#232323] rounded shadow mt-3">
                 <Link to="/privacy" className="login border-b px-3 py-2 border-gray-400 flex justify-between items-center gap-2" >
                     <span className="text-[#282828] flex gap-3 items-center dark:text-white tracking-wide text-[16px] "> <MdOutlinePrivacyTip size={25} /> privacy Policy </span>
-                    <span className="text-cyan-600"><MdKeyboardArrowRight size={25} /></span>
+                    <span className="text-cyan-600"> {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                 </Link>
                 <Link to="/about" className="  border-b px-3 py-3 border-gray-400 flex justify-between items-center  gap-2">
                     <span className="text-[#282828] dark:text-white flex items-center gap-3 text-[16px] tracking-wide"> <AiOutlineInfoCircle size={25} /> About Us</span>
-                    <span className="text-cyan-600"> <MdKeyboardArrowRight size={25} /></span>
+                    <span className="text-cyan-600">  {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />}</span>
                 </Link>
                 <button onClick={() => setOpenCatact(true)} className="login px-3 py-2 border-gray-400 flex justify-between items-center gap-2">
                     <span className="text-[#282828] dark:text-white flex gap-3 items-center tracking-wide text-[16px]"> <MdContactPage size={25} /> Contact Us </span>
-                    <span className="text-cyan-600"> <MdKeyboardArrowRight size={23} /> </span>
+                    <span className="text-cyan-600">  {isRTL ? <MdKeyboardArrowLeft size={25} /> : <MdKeyboardArrowRight size={25} />} </span>
                 </button>
             </div>
             {openCantact && <ContactPage setOpenCatact={setOpenCatact} />}

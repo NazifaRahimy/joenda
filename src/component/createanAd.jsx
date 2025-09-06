@@ -269,7 +269,7 @@ function CreateAd() {
                                     <div className=" flex flex-col w-full relative gap-1">
                                         <label className="text-[12px] md:text-[16px]">{t("create.phoneNumberLabel")}</label>
                                         <div className="relative">
-                                            <span  className={`absolute top-2.5  ${ document.documentElement.dir === "rtl"  ? "right-2" : "right-2"  } `}>
+                                            <span  className={`absolute top-2.5  ${ document.documentElement.dir === "rtl"  ? "right-2" :  "left-2"  } `}>
                                                 <GrLanguage />
                                             </span>
                                             <input type="text"
@@ -293,7 +293,7 @@ function CreateAd() {
                                             )}
                                         </label>
                                         <div className="relative">
-                                            <span className={`absolute left-2 top-2.5  ${ document.documentElement.dir === "rtl" ? "right-2" : "left-2" }`} ><GrLanguage /></span>
+                                            <span className={`absolute  top-2.5  ${ document.documentElement.dir === "rtl" ? "right-2" : "left-2" }`} ><GrLanguage /></span>
                                             <input
                                             onChange={handleChange}
                                             type="text"
