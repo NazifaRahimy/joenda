@@ -17,12 +17,16 @@ const MyProfile = () => {
     const [theme, setTheme] = useState("day");
     const [user, setUser] = useState(null);
     const [openLanguage, setOpenLanguage] = useState(false);
-    const [currentLanguage, setCurrentLanguage] = useState("English");
+    const [currentLanguage, setCurrentLanguage] = useState( localStorage.getItem("selectedLang") || "English");
     const [openCantact, setOpenCatact] = useState(false);
     const [openUpdateProfile, setOpenUpdateProfile] = useState(false);
     const [openLogout, setOpenLogout] = useState(false);
     const [openDeleteAccount, setOpenDeleteAccount] = useState(false);
-
+    const handleLanguageSelect = (langLabel, langCode) => {
+        setCurrentLanguage(langLabel);
+        localStorage.setItem("selectedLang", langLabel); 
+        localStorage.setItem("selectedLangCode", langCode); 
+    };
     useEffect(() => {
         const token = localStorage.getItem("auth-token");
         const name = localStorage.getItem("auth-name");
@@ -89,7 +93,7 @@ const MyProfile = () => {
                     </div>
                     )}
                 </div>
-                {openLanguage && ( <ChangeLanguage    setOpenLanguage={setOpenLanguage} onSelectLanguage={setCurrentLanguage}  />)}
+                {openLanguage && ( <ChangeLanguage    setOpenLanguage={setOpenLanguage}    onSelectLanguage={(label, code) => handleLanguageSelect(label, code)}   />)}
                 {user ? (
                     <div className="w-full px-3 py-1 flex flex-col bg-white dark:bg-[#232323] rounded shadow mt-3">
                         <button onClick={() => setOpenUpdateProfile(true)} className="login  px-3 py-2 border-gray-400 flex justify-between items-center gap-2">
