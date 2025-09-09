@@ -148,14 +148,36 @@ const Post = ({ addToFavorites }) => {
         }
         addToFavorites(product);
   };
+  useEffect(() => {
+    if (!id) return;
 
-    useEffect(() => {
+    // ۱. دریافت داده پست
+    fetch(`${BASE_URL}/ads/${id}`)
+      .then(res => res.json())
+      .then(data => setProduct(data))
+      .catch(err => console.log(err));
+
+    // ۲. افزایش تعداد بازدید
+    fetch(`${BASE_URL}/ads/${id}/views`, {
+        method: "POST",
+    })
+    .then(res => res.json())
+    .then(data => {
+        // اگر خواستی می‌تونی تعداد بازدید را در state ذخیره کنی
+        setProduct(prev => prev ? { ...prev, views: data.views } : prev);
+    })
+    .catch(err => console.log(err));
+
+}, [id]);
+
+
+    // useEffect(() => {
         
-        fetch(`${BASE_URL}/ads/${id}`)
-          .then(res => res.json())
-          .then(data => setProduct(data))
-          .catch(err => console.log(err));
-    }, [id]);
+    //     fetch(`${BASE_URL}/ads/${id}`)
+    //       .then(res => res.json())
+    //       .then(data => setProduct(data))
+    //       .catch(err => console.log(err));
+    // }, [id]);
 
     useEffect(() => {
         setPostUrl(window.location.href); 
@@ -225,9 +247,9 @@ const Post = ({ addToFavorites }) => {
                     {selectedProduct && (<ContactModal  isOpen={!!selectedProduct} onClose={() => setSelectedProduct(null)}
                     phone={selectedProduct.phoneNumber} whatsapp={selectedProduct.whatsappNumber}
                     region={selectedProduct.region} district= {selectedProduct.district} province={selectedProduct.province} /> )}
-                    <div className="flex justify-between mt-5">
+                    <div className="view flex justify-between mt-5">
                         <p>{t("post.total_views")} :</p> 
-                        <span className="inline-flex items-center gap-2.5">123 <IoEyeOutline /></span>
+                        <span className="inline-flex items-center gap-2.5">{product.views || 0} <IoEyeOutline /></span>
                     </div>
                     <div className="flex justify-between mt-5">
                         <p>{t("post.posted_by")} :</p> 
