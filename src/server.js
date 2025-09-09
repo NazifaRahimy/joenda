@@ -102,11 +102,23 @@ import fs from "fs";
             seller: "ali", // یا از توکن کاربر بگیری
             ...adData,
             images: images,
-           createdAt: new Date()
+           createdAt: new Date(),
+            views: 0 
         };
         ads.unshift(newAd);
         res.json({ success: true, ad: newAd }); // ← پاسخ JSON شامل id واحد
     });
+
+   app.post('/ads/:id/views', (req, res) => {
+    const adId = parseInt(req.params.id);
+    const ad = ads.find(a => a.id === adId);
+    if (!ad) return res.status(404).json({ error: 'Ad not found' });
+
+    ad.views = (ad.views || 0) + 1;  // افزایش تعداد بازدید
+    res.json({ views: ad.views });
+});
+
+
     // گرفتن آگهی خاص با id
     app.get('/ads/:id', (req, res) => {
         const adId = parseInt(req.params.id);
