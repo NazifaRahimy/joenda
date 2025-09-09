@@ -212,7 +212,7 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
                                 <div className="flex md:flex-col flex-row-reverse">
                                     <Link to={`/post/${product.id}`}>
                                         {/* src={`http://localhost:3001${product.images[0].url}`} */}
-                                        <img   src={`https://joyenda-server.onrender.com${product.images[0].url}`}  className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md bg-blue-400 ${document.documentElement.dir === "rtl" ? "rounded-tl-md rounded-bl-md" : "rounded-tr-md rounded-br-md"}`} alt={product.cat} />
+                                        <img   src={`https://joyenda-server.onrender.com${product.images[0].url}`}  className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md ${document.documentElement.dir === "rtl" ? "rounded-tl-md rounded-bl-md" : "rounded-tr-md rounded-br-md"}`} alt={product.cat} />
                                     </Link>
                                     <div className="w-full">
                                        <div className="info flex-1 p-4">
