@@ -42,6 +42,12 @@ const resources = {
             categoryImageVehicles: "vihecles",
             categoryImageMobiles: "Mobile & Computer",
             categoryImageRealEstate: "Real State",
+            time: {
+                justNow: "just now",
+                minutesAgo: "{{count}} minutes ago",
+                hoursAgo: "{{count}} hours ago",
+                daysAgo: "{{count}} days ago",
+            },
             provinceDropdown: {
                 select: "Provinces",
                 search_placeholder: "Search province...",
@@ -1026,6 +1032,12 @@ const resources = {
             categoryImageMobiles: "موبایل و کامپیوتر",
             categoryImageRealEstate: "جایداد ها",
             priceLabel: "قیمت",
+            time: {
+                justNow: "چند ثانیه پیش",
+                minutesAgo: "{{count}} دقیقه پیش",
+                hoursAgo: "{{count}} ساعت پیش",
+                daysAgo: "{{count}} روز پیش"
+            },
             provinceDropdown: {
                 select: "ولایت‌ها",
                 search_placeholder: "جستجوی ولایت...",
@@ -2013,6 +2025,12 @@ const resources = {
             categoryImageVehicles: "ترانسپورتي وسایط",
             categoryImageMobiles: "موبایلونه او کمپیو ټرونه",
             categoryImageRealEstate: "جایدادونه",
+            time: {
+                justNow: "څو ثانیې مخکې",
+                minutesAgo: "{{count}} دقیقې مخکې",
+                hoursAgo: "{{count}} ساعته مخکې",
+                daysAgo: "{{count}} ورځې مخکې"
+            },        
             provinceDropdown: {
                 select: "ولایتونه",
                 search_placeholder: "د ولایت نوم ولټوه...",
