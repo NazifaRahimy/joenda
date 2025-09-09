@@ -1,3 +1,4 @@
+import useMobile from "./useMobile";
 import PageTitle from "./pagetitle";
 import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
@@ -7,9 +8,10 @@ import Footer from "./footer";
 import { GrLanguage } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import ScrollToTopButton from "./bottomToTob";
+import  ContactPageMobile  from "./Application/contact";
 function ContactPage() {
 	const { t } = useTranslation();
-
+    const isMobile = useMobile();
 	const [user, setUsers] = useState({ first_name:'', email:'', subject:'', last_name:'', message:'', company_name:"", phone:''})
 
     const [touched, setTouched] = useState({
@@ -101,7 +103,9 @@ function ContactPage() {
    }
 
   return (
-    <div className="relative hidden md:block">
+    <>
+    {isMobile ? < ContactPageMobile  />:
+    (<div className="relative">
         <PageTitle title="pages.contact" />
         <div className="container mx-auto min-h-screen ">
             <section className=" grid items-center grid-cols-1 md:grid-cols-2 mt-12 gap-8  ">
@@ -209,6 +213,9 @@ function ContactPage() {
         <ScrollToTopButton />
         <Footer />
     </div>
+    )
+   }
+   </>
   );
 }
 
