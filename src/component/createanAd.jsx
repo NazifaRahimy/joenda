@@ -249,6 +249,7 @@ function CreateAd() {
                                                     e.preventDefault();
                                                     setAdData((prev) => ({ ...prev,  currency: option,})); // فقط کلید ذخیره میشه
                                                     localStorage.setItem( "selected-currency", option  );
+                                                    setOpen(false)
                                                 }}
                                             >    
 											    <span>{t(`create.${option}`)}</span>
