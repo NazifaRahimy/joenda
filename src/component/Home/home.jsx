@@ -17,7 +17,6 @@ import { FilterContext } from "./filterContaxt";
 import Category from "../Application/category";
 import Filters from "../Application/filter";
 
-
 function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
     const [ads, setAds] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -30,6 +29,29 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
     const [modifyAccount, setModifyAccount] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
 	const { t } = useTranslation();
+    const [tick, setTick] = useState(0); 
+
+    const timeAgo = (dateString) => {
+        const now = new Date();
+        const past = new Date(dateString);
+        const diff = now - past;
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        if (seconds < 60) return t('home.time.justNow');
+        if (minutes < 60) return t('home.time.minutesAgo', { count: minutes });
+        if (hours < 24) return t('home.time.hoursAgo', { count: hours });
+        return t('time.daysAgo', { count: days });
+    };
+
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTick(prev => prev + 1); 
+        }, 60000); 
+        return () => clearInterval(interval);
+    }, []);
 
     const {
         areaText,
@@ -178,15 +200,15 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
             </div>
             <div className='relative bg-gray-50 md:bg-transparent  py-4 px-2 md:px-0 w-full dark:bg-[#1a1a1a]'>
                 {filteredProducts.length > 0 ? (
-                    <div className="products relative grid   md:mb-12 md:mt-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                    <div className="products relative grid   md:mb-12 md:mt-0 grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                         {filteredProducts.map((product) => (
                             <div key={product.id} className='bg-white w-full md:max-w-[300px] border dark:border-cyan-300 dark:bg-[#282828] border-cyan-200 rounded-md h-auto md:h-[400px]'>
-                                 {/* <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
+                                 <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
                                     <FiUser className="text-md" /> {product.seller}
-                                </button> */}
-                                <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
-                                    <FiUser className="text-md" /> {name}
                                 </button>
+                                {/* <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
+                                    <FiUser className="text-md" /> {name}
+                                </button> */}
                                 <div className="flex md:flex-col flex-row-reverse">
                                     <Link to={`/post/${product.id}`}>
                                         {/* src={`http://localhost:3001${product.images[0].url}`} */}
@@ -198,7 +220,9 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
                                            <p className="text-xs gap-2.5 flex items-center">{product.province} <span className="text-sm mr-3">in</span> <span>{product.district}</span> {product.region}</p>
                                            <p className="category2 text-xs mt-1">Product State: new</p>
                                            <p className="hidden md:block category2 text-xs mt-1">Category : {t(`create.${product.category}`)}</p>
-                                           <p className="category2 text-xs mt-1">1 aweaks ago</p>
+                                           {/* <p className="category2 text-xs mt-1">1 aweaks ago</p> */}
+                                           <p className="category2 text-xs mt-1">{timeAgo(product.createdAt)}</p>
+
                                        </div>
                                         <div className="contact flex justify-between px-4 py m">
                                             <span className="text-lg font-bold">{product.price} {getCurrencySymbol(product.currency)}</span>

@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import postProduct from "./postProduct";
 import { GoArrowRight, GoArrowLeft } from "react-icons/go"
 import BASE_URL from "../../config";
+
 const Post = ({ addToFavorites }) => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -32,6 +33,32 @@ const Post = ({ addToFavorites }) => {
     const boxRef = useRef(null);
     const isRTL = document.documentElement.dir === "rtl";
     const directionMultiplier = isRTL ? 1 : -1;
+
+    const [tick, setTick] = useState(0);
+    const timeAgo = (dateString) => {
+        const now = new Date();
+        const past = new Date(dateString);
+        const diff = now - past;
+
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        if (seconds < 60) return t('home.time.justNow');
+        if (minutes < 60) return t('home.time.minutesAgo', { count: minutes });
+        if (hours < 24) return t('home.time.hoursAgo', { count: hours });
+        return t('time.daysAgo', { count: days });
+    };
+
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTick(prev => prev + 1); 
+        }, 60000); 
+        return () => clearInterval(interval);
+    }, []);
+
 
     useEffect(() => {
         const updateBoxWidth = () => {
@@ -176,7 +203,7 @@ const Post = ({ addToFavorites }) => {
                         <h2 className="text-2xl font-semibold">؋ {product.price}</h2>
                         <h2 className="text-2xl font-semibold">{product.product}</h2>
                     </div>
-                    <p className="text-lg  items-center mt-4 flex gap-1"><CiCalendar /> <span>3 days ago</span>  <span className="text-sm mr-3"> {t("post.in")}</span> {product.region} <span> {product.district}</span> {product.province} </p>
+                    <p className="text-lg  items-center mt-4 flex gap-1"><CiCalendar /> <span>  {product && timeAgo(product.createdAt)}</span>  <span className="text-sm mr-3"> {t("post.in")}</span> {product.region} <span> {product.district}</span> {product.province} </p>
                     <p className={`mt-5 text-xl `}> Product State: <span className="text-[16px]">like new</span></p>
          
                    <div className="my-5 border-b border-cyan-300 text-right">
@@ -204,8 +231,8 @@ const Post = ({ addToFavorites }) => {
                     </div>
                     <div className="flex justify-between mt-5">
                         <p>{t("post.posted_by")} :</p> 
-                        {/* <span className="inline-flex items-center gap-2.5 transition-colors duration-200 hover:text-cyan-600">{product.seller} <IoLinkOutline /></span> */}
-                        <span className="inline-flex items-center gap-2.5 transition-colors duration-200 hover:text-cyan-600">{name} <IoLinkOutline /></span>
+                        <span className="inline-flex items-center gap-2.5 transition-colors duration-200 hover:text-cyan-600">{product.seller} <IoLinkOutline /></span>
+                        {/* <span className="inline-flex items-center gap-2.5 transition-colors duration-200 hover:text-cyan-600">{name} <IoLinkOutline /></span> */}
                     </div>
                     <div className="flex justify-between mt-5">
                         <p>{t("post.categories")}:</p> 
