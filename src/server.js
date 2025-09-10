@@ -5,10 +5,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 
-    const app = express();
-    // const PORT = 3001;
+import http from "http";
+import { Server } from "socket.io";
 
-    // برای استفاده از __dirname در ES Module
+    const app = express();
+
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
@@ -25,7 +26,7 @@ import fs from "fs";
             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
             cb(null, uniqueSuffix + '-' + file.originalname);
         }
-   });
+    });
 
    const upload = multer({ storage });
 
@@ -37,6 +38,8 @@ import fs from "fs";
     //         methods: ["GET", "POST", "PUT", "DELETE"],
     //     })
     // );
+
+
     app.use(cors({ origin: "*" }));
 
 //     app.use(
@@ -106,6 +109,9 @@ import fs from "fs";
             views: 0 
         };
         ads.unshift(newAd);
+        
+        // 🆕 ارسال آگهی جدید به همه کلاینت‌ها
+        io.emit("newAd", newAd);
         res.json({ success: true, ad: newAd }); // ← پاسخ JSON شامل id واحد
     });
 
@@ -134,9 +140,30 @@ import fs from "fs";
     });
 
     const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
+    
+    const server = http.createServer(app);
+
+    const io = new Server(server, {
+        cors: {
+            origin: "*", // یا فقط فرانتت "https://joenda.netlify.app"
+            methods: ["GET", "POST"],
+        },
     });
+
+    io.on("connection", (socket) => {
+        console.log("یک کاربر وصل شد:", socket.id);
+
+        socket.on("disconnect", () => {
+            console.log("یک کاربر قطع شد:", socket.id);
+        });
+    });
+
+    server.listen(PORT, () => {
+        console.log(`🚀 Server is running on port ${PORT}`);
+    });
+    // app.listen(PORT, () => {
+    //     console.log(`Server is running on port ${PORT}`);
+    // });
 
 
     // app.listen(PORT, () => {
