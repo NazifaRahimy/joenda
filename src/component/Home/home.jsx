@@ -16,6 +16,7 @@ import SelecProvince from "../Application/selectProvince";
 import { FilterContext } from "./filterContaxt";
 import Category from "../Application/category";
 import Filters from "../Application/filter";
+import { io } from "socket.io-client";
 
 function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
     const [ads, setAds] = useState([]);
@@ -64,6 +65,14 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
     } = useContext(FilterContext);
 
 	useEffect(() => {
+        // اتصال به سرور Socket.io
+        const socket = io("https://joyenda-server.onrender.com"); // آدرس سرور شما
+
+        // دریافت آگهی جدید در real-time
+        socket.on("newAd", (newAd) => {
+            setAds(prevAds => [newAd, ...prevAds]);
+        });
+
         // fetch("http://localhost:3001/ads")
         fetch("https://joyenda-server.onrender.com/ads")
         .then(res => {
@@ -80,6 +89,12 @@ function HomePage({ addToFavorites, IsLoggedIn, setIsLoggedIn }) {
             console.error("Error fetching ads:", err);
             setLoading(false);
         });
+
+        
+    // cleanup
+    return () => {
+        socket.disconnect();
+    };
     }, []);
 
     useEffect(() => {
