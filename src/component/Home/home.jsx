@@ -17,7 +17,7 @@ import {FilterContext} from "./filterContaxt";
 import Category from "../Application/category";
 import Filters from "../Application/filter";
 import {io} from "socket.io-client";
-
+import ProductsGridView from "../Application/ProductsGridView";
 function HomePage({addToFavorites, IsLoggedIn, setIsLoggedIn}) {
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +31,7 @@ function HomePage({addToFavorites, IsLoggedIn, setIsLoggedIn}) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const {t} = useTranslation();
   const [tick, setTick] = useState(0);
+  const [gridView, setGridView] = useState(false);
 
   const timeAgo = (dateString) => {
     const now = new Date();
@@ -408,9 +409,13 @@ function HomePage({addToFavorites, IsLoggedIn, setIsLoggedIn}) {
               </div>
               <p className="AllProduct p-4  mt-4 flex w-full items-center justify-between">
                 {t("home.allProducts")} {filteredProducts.length}{" "}
-                <span className="text-cyan-600 mr-5">
+                <button
+                  //   onClick={() => setGridView(true)}
+                  onClick={() => setGridView((prev) => !prev)}
+                  className="text-cyan-600 mr-5"
+                >
                   <AiOutlineAppstore size={25} />
-                </span>
+                </button>
               </p>
             </div>
           </div>
@@ -427,76 +432,81 @@ function HomePage({addToFavorites, IsLoggedIn, setIsLoggedIn}) {
           )}
         </div>
       </div>
-      <div className="relative bg-gray-50 md:bg-transparent  py-4 px-2 md:px-0 w-full dark:bg-[#1a1a1a]">
+
+      <div className="relative bg-gray-50 md:bg-transparent  w-full dark:bg-[#1a1a1a]">
         {filteredProducts.length > 0 ? (
-          <div className="products relative grid   md:mb-12 md:mt-0 grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white w-full md:max-w-[300px] border dark:border-cyan-300 dark:bg-[#282828] border-cyan-200 rounded-md h-auto md:h-[400px]"
-              >
-                <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
-                  <FiUser className="text-md" /> {product.seller}
-                </button>
-                {/* <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
+          gridView ? (
+            <ProductsGridView products={filteredProducts} timeAgo={timeAgo} />
+          ) : (
+            <div className="products relative grid py-4 px-2 md:px-0    md:mb-12 md:mt-0 grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+              {filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="bg-white w-full md:max-w-[300px] border dark:border-cyan-300 dark:bg-[#282828] border-cyan-200 rounded-md h-auto md:h-[400px]"
+                >
+                  <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
+                    <FiUser className="text-md" /> {product.seller}
+                  </button>
+                  {/* <button className="hidden md:flex justify-center font-medium text-xs items-center px-3 h-8 gap-2 ml-3 mt-2 hover:bg-cyan-100 transition-colors outline-none dark:hover:bg-cyan-900 dark:hover:text-white rounded-full duration-200 hover:text-cyan-700">
                                     <FiUser className="text-md" /> {name}
                                 </button> */}
-                <div className="flex md:flex-col flex-row-reverse">
-                  <Link to={`/post/${product.id}`}>
-                    {/* src={`http://localhost:3001${product.images[0].url}`} */}
-                    <img
-                      src={`https://joyenda-server.onrender.com${product.images[0].url}`}
-                      className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md ${
-                        document.documentElement.dir === "rtl"
-                          ? "rounded-tl-md rounded-bl-md"
-                          : "rounded-tr-md rounded-br-md"
-                      }`}
-                      alt={product.cat}
-                    />
-                  </Link>
-                  <div className="w-full">
-                    <div className="info flex-1 p-4">
-                      <h4 className="md:text-right">{product.product}</h4>
-                      <p className="text-xs gap-2.5 flex items-center">
-                        {product.province}{" "}
-                        <span className="text-sm mr-3">in</span>{" "}
-                        <span>{product.district}</span> {product.region}
-                      </p>
-                      <p className="category2 text-xs mt-1">
-                        Product State: new
-                      </p>
-                      <p className="hidden md:block category2 text-xs mt-1">
-                        Category : {t(`create.${product.category}`)}
-                      </p>
-                      {/* <p className="category2 text-xs mt-1">1 aweaks ago</p> */}
-                      <p className="category2 text-xs mt-1">
-                        {timeAgo(product.createdAt)}
-                      </p>
-                    </div>
-                    <div className="contact flex justify-between px-4 py m">
-                      <span className="text-lg font-bold">
-                        {product.price} {getCurrencySymbol(product.currency)}
-                      </span>
-                      <div className="hidden md:flex items-center gap-2">
-                        <button
-                          onClick={() => setSelectedProduct(product)}
-                          className="text-sm font-medium hover:bg-cyan-100 transition-colors outline-none rounded-full duration-200 hover:text-cyan-700 h-9 dark:hover:bg-cyan-900 dark:hover:text-white"
-                        >
-                          <FiPhone size={20} />
-                        </button>
-                        <button
-                          onClick={() => handleAddToFavorites(product)}
-                          className="text-sm font-medium hover:bg-cyan-100 transition-colors outline-none rounded-full duration-200 dark:hover:bg-cyan-900 dark:hover:text-white h-9"
-                        >
-                          <FiHeart size={20} />
-                        </button>
+                  <div className="flex md:flex-col flex-row-reverse">
+                    <Link to={`/post/${product.id}`}>
+                      {/* src={`http://localhost:3001${product.images[0].url}`} */}
+                      <img
+                        src={`https://joyenda-server.onrender.com${product.images[0].url}`}
+                        className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 md:rounded-md ${
+                          document.documentElement.dir === "rtl"
+                            ? "rounded-tl-md rounded-bl-md"
+                            : "rounded-tr-md rounded-br-md"
+                        }`}
+                        alt={product.cat}
+                      />
+                    </Link>
+                    <div className="w-full">
+                      <div className="info flex-1 p-4">
+                        <h4 className="md:text-right">{product.product}</h4>
+                        <p className="text-xs gap-2.5 flex items-center">
+                          {product.province}{" "}
+                          <span className="text-sm mr-3">in</span>{" "}
+                          <span>{product.district}</span> {product.region}
+                        </p>
+                        <p className="category2 text-xs mt-1">
+                          Product State: new
+                        </p>
+                        <p className="hidden md:block category2 text-xs mt-1">
+                          Category : {t(`create.${product.category}`)}
+                        </p>
+                        {/* <p className="category2 text-xs mt-1">1 aweaks ago</p> */}
+                        <p className="category2 text-xs mt-1">
+                          {timeAgo(product.createdAt)}
+                        </p>
+                      </div>
+                      <div className="contact flex justify-between px-4 py m">
+                        <span className="text-lg font-bold">
+                          {product.price} {getCurrencySymbol(product.currency)}
+                        </span>
+                        <div className="hidden md:flex items-center gap-2">
+                          <button
+                            onClick={() => setSelectedProduct(product)}
+                            className="text-sm font-medium hover:bg-cyan-100 transition-colors outline-none rounded-full duration-200 hover:text-cyan-700 h-9 dark:hover:bg-cyan-900 dark:hover:text-white"
+                          >
+                            <FiPhone size={20} />
+                          </button>
+                          <button
+                            onClick={() => handleAddToFavorites(product)}
+                            className="text-sm font-medium hover:bg-cyan-100 transition-colors outline-none rounded-full duration-200 dark:hover:bg-cyan-900 dark:hover:text-white h-9"
+                          >
+                            <FiHeart size={20} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )
         ) : (
           <div className="w-full min-h-[105vh] flex items-center justify-center">
             <div className="h-auto flex flex-col items-center shadow-lg bg-white dark:bg-[#282828] p-6 rounded-md mx-auto">
@@ -513,6 +523,7 @@ function HomePage({addToFavorites, IsLoggedIn, setIsLoggedIn}) {
             </div>
           </div>
         )}
+
         {isLoginOpen && (
           <LoginModal
             isOpen={isLoginOpen}
