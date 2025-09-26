@@ -138,13 +138,14 @@ function FavoritePage({cart}) {
                 <div className="flex md:flex-col flex-row-reverse">
                   <Link to={`/post/${product.id}`}>
                     <img
-                      src={`http://localhost:3001${product.images[0].url}`}
+                      src={product.images[0].url}
+                      alt={product.product}
+                      // src={`http://localhost:3001${product.images[0].url}`}
                       className={`w-[200px] md:w-full h-[150px] object-cover md:mt-5 rounded-md  ${
                         document.documentElement.dir === "rtl"
                           ? "rounded-tl-md rounded-bl-md"
                           : "rounded-tr-md rounded-br-md"
                       }`}
-                      alt=""
                     />
                   </Link>
                   <div className="w-full ">
