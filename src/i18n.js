@@ -130,7 +130,7 @@ const resources = {
             title: "Favorites",
         },
         about: {
-            title: "About Azpag",
+            title: "About Joyena",
             subtitle:"Joyenda:Afghanistan's Online Marketplace for Buying and Selling",
             intro1:"The Joyenda  is an online marketplace in Afghanistan that enables direct, commission-free  transactions for all people across the country. On this platform, users can easily search for the products and services they need or offer their own items for sale — directly and without  intermediaries, throughout Afghanistan",
             intro2:"The Joyenda platform is owned by Ganj Nawa Online Services Company and is officially registered with the Ministry of Industry and Commerce and the Ministry of Telecommunications and Information Technology of Afghanistan",
@@ -1120,8 +1120,8 @@ const resources = {
             title: "علاقه‌مندی‌ها",
         },
         about: {
-            title: "درباره ازپاگ",
-            subtitle: "ازپاگ: بازار آنلاین خرید و فروش در افغانستان",
+            title: "درباره جوینده",
+            subtitle: "جوینده: بازار آنلاین خرید و فروش در افغانستان",
             intro1:"ازپگ یک بازار آنلاین خرید و فروش در افغانستان است که امکان انجام معاملات مستقیم و بدون واسطه را برای تمام مردم کشور فراهم می‌سازد. در این پلتفرم، کاربران می‌توانند به‌آسانی کالاها و خدمات مورد نیاز خود را جستجو کرده یا اقلام مورد نظر خود را برای فروش عرضه نمایند -- بدون نیاز به واسطه، در سراسر افغانستان.",
             intro2:"پلتفرم ازپگ متعلق به شرکت «خدمات آنلاین گنج نوا» بوده و به‌طور رسمی در وزارت صنعت و تجارت و وزارت مخابرات و تکنالوژی معلوماتی افغانستان ثبت شده است",
             whatWeDo: "ما چه می‌کنیم؟",
@@ -2113,7 +2113,7 @@ const resources = {
             title: "خوښې",
         },
         about: {
-            title: "د ازپاګ په اړه",
+            title: "د جوینده په اړه",
             subtitle: "ازپاګ: د افغانستان د آنلاین اخیستو او پلورلو بازار",
             intro1:"ازپگ یو آنلاین بازار دی چې په افغانستان کې د ټولو خلکو لپاره د مستقیمو او بې‌ واسطې معاملاتو زمینه برابروي. د دې پلاتفورم له لارې کاروونکي کولی شي په آسانۍ سره هغه محصولات او خدمات ولټوي چې ورته اړتیا لري، یا خپل توکي د پلور لپاره وړاندیز کړي -- دا ټول مستقیم، بې ‌واسطې، او د افغانستان په هر ګوټ کې.",
             intro2:"دد ازپگ پلاتفورم د د ګنج نوا آنلاین خدماتو شرکت ملکیت دی او رسمي ډول د افغانستان د صنعت او سوداګرۍ وزارت او د مخابراتو او معلوماتي ټکنالوژۍ وزارت کې ثبت شوی دی.",

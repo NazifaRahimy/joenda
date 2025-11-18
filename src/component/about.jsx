@@ -33,7 +33,7 @@ function AboutPage() {
 		            <p>{t("about.intro1")}.</p>
 	                <p className="mt-4">{t("about.intro2")}.</p>
 		        </section>
-		        <section className="mb-12">  
+		        {/* <section className="mb-12">  
 			        <h2 className="text-xl font-bold mb-6">{t("about.whatWeDo")}</h2>
 			        <p className="text-lg mb-8">{t("about.whatWeDoDesc")}.</p>
 		            <h3 className="text-2xl font-semibold mb-4">{t("about.services.title")}</h3>
@@ -178,7 +178,7 @@ function AboutPage() {
 				            </div>
 			            </div>
 			        </div>
-		        </section>
+		        </section> */}
 	        </div>
             <div className="text-center">
 		        <p className="mb-6 text-xl  ">{t("about.join")}</p>
