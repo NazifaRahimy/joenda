@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {FiUser, FiLogIn, FiLogOut} from "react-icons/fi";
 import {GrLanguage} from "react-icons/gr";
+import HomePage from "../Home/home";
 import {
   MdOutlineNightlight,
   MdKeyboardArrowRight,
@@ -8,6 +9,7 @@ import {
   MdContactPage,
   MdKeyboardArrowLeft,
 } from "react-icons/md";
+import useMobile from "../useMobile";
 import {BiBox} from "react-icons/bi";
 import ChangeLanguage from "./changeLanguage";
 import {FaRegUser, FaRegBookmark} from "react-icons/fa6";
@@ -31,6 +33,8 @@ const MyProfile = () => {
   const [openLogout, setOpenLogout] = useState(false);
   const [openDeleteAccount, setOpenDeleteAccount] = useState(false);
   const {i18n} = useTranslation();
+  const isMobile = useMobile();
+
   const isRTL = i18n.dir() === "rtl";
   const handleLanguageSelect = (langLabel, langCode) => {
     setCurrentLanguage(langLabel);
@@ -65,7 +69,8 @@ const MyProfile = () => {
   }, [theme]);
 
   return (
-    <div className="w-full pb-20 ">
+    <>{
+      isMobile ? (<div className="w-full pb-20 ">
       <div className="sticky top-0 z-20 flex w-full justify-start items-center h-20 px-3 bg-cyan-500">
         <p className="text-[20px] font-semibold mt-4 tracking-wide">
           {" "}
@@ -324,7 +329,11 @@ const MyProfile = () => {
           <span className="text-[#282828] text-lg dark:text-white">1.0.0</span>
         </div>
       </div>
-    </div>
+    </div>): (
+       <HomePage />
+      )
+    }
+    </>
   );
 };
 
