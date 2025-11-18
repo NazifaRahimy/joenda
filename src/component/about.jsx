@@ -30,8 +30,12 @@ function AboutPage() {
 	        </div>
             <div className="p-8 rounded-lg mb-12 shadow-xl dark:bg-[#282828]">
 		        <section className="mb-12"> 
-		            <p>{t("about.intro1")}.</p>
-	                <p className="mt-4">{t("about.intro2")}.</p>
+		            <p>Joyenda is a practice project inspired by the AfPak online marketplace in Afghanistan.
+It allows users to view items for sale, post their own items, and interact with other users.
+The goal of this project was to practice building a multi-page web application with React and Tailwind CSS, focusing on responsive design and user-friendly navigation.The project has multiple pages including Home, About, Contact, Privacy, and Favorite.</p>
+	                <p className="mt-4">Joyenda is a practice project inspired by the AfPak online marketplace in Afghanistan.
+It allows users to view items for sale, post their own items, and interact with other users.
+The goal of this project was to practice building a multi-page web application with React and Tailwind CSS, focusing on responsive design and user-friendly navigation.The project has multiple pages including Home, About, Contact, Privacy, and Favorite.</p>
 		        </section>
 		        {/* <section className="mb-12">  
 			        <h2 className="text-xl font-bold mb-6">{t("about.whatWeDo")}</h2>
